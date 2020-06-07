@@ -326,7 +326,7 @@ df.pass1$pass_angle <- acos((df.pass1$receiver_x - df.pass1$x_event)/
 
 ## create logistic model 
 pass.model.1 <- glm(pass_success ~ x_event + y_event + pass_distance + pass_angle + 
-                      receiver_x + receiver_y + situation_type, data = df.pass1, family = "binomial")
+                      receiver_x + receiver_y, data = df.pass1, family = "binomial")
 summary(pass.model.1)
 
 
@@ -340,7 +340,7 @@ pass.test.1 = filter(subset(df.pass1, pass.split.1 == FALSE), pass_distance > 0)
 
 
 final.pass.1 <- glm(pass_success ~ x_event + y_event + pass_distance + pass_angle + 
-                      receiver_x + receiver_y + situation_type, data = pass.train.1, family = "binomial")
+                      receiver_x + receiver_y, data = pass.train.1, family = "binomial")
 summary(final.pass.1)
 
 
@@ -349,7 +349,7 @@ summary(final.pass.1)
 pass.prob.1 <- predict(final.pass.1, newdata = pass.test.1, type = 'response')
 pass.results.1 <- ifelse(pass.prob.1 > 0.5,1,0)
 pass.error.1 <- mean(pass.results.1 != pass.test.1$pass_success)
-print(paste('Accuracy',1-pass.error.1))   ## 0.696
+print(paste('Accuracy',1-pass.error.1))   ## 0.7059
 
 
 
