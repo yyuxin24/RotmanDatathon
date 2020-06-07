@@ -5,10 +5,9 @@ data <- read.csv(file = "~/Desktop/Rotman MMA Summer Datathon (men&women olympic
 ## convert data set to a data frame
 df.data <- as.data.frame(data)
 ## extract women's data
-df.women <- df.data[1:3046,]
 library(dplyr)
 library(ggplot2)
-df.women <- filter(df.women, team_name == "Olympic (Women) - Canada")
+df.women <- filter(df.data, team_name == "Olympic (Women) - Canada")
 
 
 ## check situation types
